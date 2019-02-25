@@ -5,7 +5,8 @@ const initialState = {
   color: 'red'
 }
 
-const valueChangeReducer = (state = initialState.value, action) => {
+const value = (state = initialState.value, action) => {
+  console.log('value', action.type)
   switch(action.type) {
     case 'ADD_VALUE':
       return state + action.value
@@ -14,7 +15,8 @@ const valueChangeReducer = (state = initialState.value, action) => {
   }
 }
 
-const counterChangeReducer = (state = initialState.counter, action) => {
+const counter = (state = initialState.counter, action) => {
+  console.log('counter', action.type)
   switch(action.type) {
     case 'INCREMENT':
       return state + 1
@@ -25,7 +27,8 @@ const counterChangeReducer = (state = initialState.counter, action) => {
   }
 }
 
-const colorChangeReducer = (state = initialState.color, action) => {
+const color = (state = initialState.color, action) => {
+  console.log('color', action.type)
   switch(action.type) {
     case 'BLUE':
       return 'blue'
@@ -42,9 +45,9 @@ const colorChangeReducer = (state = initialState.color, action) => {
   }
 }
 const rootReducer = this.Redux.combineReducers({
-  value: valueChangeReducer,
-  counter: counterChangeReducer,
-  color: colorChangeReducer
+  value,
+  counter,
+  color
 })
 
 const  { createStore } = Redux;
@@ -71,6 +74,7 @@ const decrementCounter = () => {
 }
 
 function renderState() {
+  console.log('state', store.getState());
   const state = store.getState();
   const stateDiv = document.getElementById('state');
   while(stateDiv.firstChild) {
